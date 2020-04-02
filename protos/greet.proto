@@ -6,6 +6,15 @@ service GreetService {
 
     //Unary API
     rpc Greet (GreetRequest) returns (GreetResponse) {};
+
+    // Streaming API
+    rpc GreetManyTimes (GreetManyTimeRequest) returns (stream GreetManyTimeResponse) {};
+
+    // Client Streaming API
+    rpc LongGreet (stream LongGreetRequest) returns (LongGreetResponse) {};
+
+    // BiDi Streaming API
+    rpc GreetEveryone (stream GreetEveryoneRequest) returns (stream GreetEveryoneResponse) {};
 }
 
 message Greeting {
@@ -14,11 +23,33 @@ message Greeting {
 }
 
 message GreetRequest {
-     Greeting greeting = 1;
+    Greeting greeting = 1;
 }
 
 message GreetResponse {
-     string result = 1;
+    string result = 1;
 }
 
+message GreetManyTimeRequest {
+    Greeting greeting = 1;
+}
 
+message GreetManyTimeResponse {
+    string result = 1;
+}
+
+message LongGreetRequest {
+    Greeting greeting = 1;
+}
+
+message LongGreetResponse {
+    string result = 1;
+}
+
+message GreetEveryoneRequest {
+    Greeting greeting = 1;
+}
+
+message GreetEveryoneResponse {
+    string result = 1;
+}
